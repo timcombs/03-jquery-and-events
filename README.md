@@ -1,6 +1,5 @@
 ![CF](https://i.imgur.com/7v5ASc8.png)  Lab 03: jQuery and events
 =======
-[![Build Status](https://travis-ci.org/codefellows-seattle-301d9/03-jquery-and-events.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d9/03-jquery-and-events)  [![GitHub issues](https://img.shields.io/badge/Stuck%3F-Ask%20for%20Help!-orange.svg)](https://github.com/codefellows/seattle-301d9/issues/new) 
 
 Work with the provided starter code to add structure and functionality a basic Blog web site.
 
