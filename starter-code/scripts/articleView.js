@@ -5,20 +5,18 @@ articleView.populateFilters = function() {
   $('article').not('.template').each(function() {
     //this refers to 'article'
 
-    //gets all the author names, would have duplicates
     //how to sort alphabetically?
     var authorName, category, optionTag;
     authorName = $(this).find('address a').text();
     optionTag = '<option value="' + authorName + '">' + authorName +'</option>';
+    //removes author duplicates
     if ($('author-filter option [value="' + authorName + '"]').length === 0) {
       $('#author-filter').append(optionTag);
     }
 
-    //gets all the categories w/duplicates
     //how to sort alphabetically?
     category = $(this).attr('data-category');
     optionTag = '<option value="' + category + '">' + category + '</option>';
-
     //removes category duplicates
     if ($('#category-filter option[value="' + category + '"]').length === 0){
       $('#category-filter').append(optionTag);
@@ -32,32 +30,25 @@ articleView.handleAuthorFilter = function() {
     if ($(this).val()) {
       $('article').hide();
       $('article[data-author="' + selectedAuthor + '"]').fadeIn(775);
-      /* TODO: If the select box changes to an option that has a value,
-      we should:
-      1. Hide all the articles,
-      2. Fade in only the articles that match based on the author
-        that was selected. Use an "attribute selector" to find
-        those articles that match the value, and fade them in
-        for the reader. */
     }else{
       console.log('no value!');
-      $('article').show();
+      $('article').fadeIn(1345);
     }
     $('#category-filter').val('');
   });
 };
 
-//TODO: as for author-filter make a category-filter
 articleView.handleCategoryFilter = function() {
-  /* TODO: Just like we do for #author-filter above, we should also handle
-  change events on the #category-filter element. Be sure to reset the
-  #author-filter while you're at it! */
-  $('category-filter').on('change', function() {
+  $('#category-filter').on('change', function() {
+    var selectedCategory = $(this).val();
     if ($(this).val()) {
-      //hide articles and show posts with by selected category
+      $('article').hide();
+      $('article[data-category="' + selectedCategory + '"]').fadeIn(775);
     }else{
-      //console.log "no value!"
+      console.log('no value!');
+      $('article').fadeIn(1345);
     }
+    $('author-filter').val('');
   });
 };
 
