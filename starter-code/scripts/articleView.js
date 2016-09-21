@@ -28,9 +28,10 @@ articleView.populateFilters = function() {
 
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
+    var selectedAuthor = $(this).val();
     if ($(this).val()) {
       $('article').hide();
-      $('article').attr().show();
+      $('article[data-author="' + selectedAuthor + '"]').fadeIn(775);
       /* TODO: If the select box changes to an option that has a value,
       we should:
       1. Hide all the articles,
@@ -40,9 +41,7 @@ articleView.handleAuthorFilter = function() {
         for the reader. */
     }else{
       console.log('no value!');
-      /* TODO: Otherwise, we should:
-      1. Show all the articles.
-      2. Except the one article we are using as a template. */
+      $('article').show();
     }
     $('#category-filter').val('');
   });
