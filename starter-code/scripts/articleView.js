@@ -27,7 +27,7 @@ articleView.populateFilters = function() {
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     var selectedAuthor = $(this).val();
-    if ($(this).val()) {
+    if (selectedAuthor) {
       $('article').hide();
       $('article[data-author="' + selectedAuthor + '"]').fadeIn(775);
     }else{
@@ -52,18 +52,22 @@ articleView.handleCategoryFilter = function() {
   });
 };
 
-//TODO:
 articleView.handleMainNav = function() {
-  /* TODO: Complete the delegated event handler below to help
-  power the tabs feature.
-  Clicking any .tab element should:
-  1. Hide all the .tab-content sections.
-  2. Fade in the single .tab-content section that is associated withthe clicked
-  .tab element's data-content attribute. */
-  $('.main-nav').on(/* CODE GOES HERE */);
+    //use delegation here - for the tab menu items
+  $('.main-nav').on('click', '.tab', function() {
+    var selectedTab = $(this).attr('data-content');
+    console.log(selectedTab);
+    if (selectedTab) {
+      $('section.tab-content').hide();
+      $('#' + selectedTab).fadeIn(775);
+    }else{
+      console.log('nothing');
+      $('section').fadeIn(1500);
+    }
+  });
 
-  //use delegation here - for the tab menu items
   //the next line fires a click event on the specified element
+  //makes only the home tab info show at page load
   $('.main-nav .tab:first').click();
 };
 
