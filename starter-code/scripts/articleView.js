@@ -66,8 +66,7 @@ articleView.handleMainNav = function() {
     }
   });
 
-  //the next line fires a click event on the specified element
-  //makes only the home tab info show at page load
+  //fires a click event to makes only the home tab info show at page load
   $('.main-nav .tab:first').click();
 };
 
