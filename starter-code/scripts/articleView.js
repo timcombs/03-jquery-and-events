@@ -71,7 +71,7 @@ articleView.handleMainNav = function() {
 
 //need e.preventDefault to keep it from jumping to top of page
 articleView.setTeasers = function() {
-  //Hides all elements after the first 2 <p> in any article body
+  //Hides all child elements after the first 2 in ANY article body
   $('.article-body *:nth-of-type(n+3)').hide();
 
   $('a.read-on').on('click', function(e) {
