@@ -56,7 +56,6 @@ articleView.handleMainNav = function() {
     //use delegation here - for the tab menu items
   $('.main-nav').on('click', '.tab', function() {
     var selectedTab = $(this).attr('data-content');
-    console.log(selectedTab);
     if (selectedTab) {
       $('section.tab-content').hide();
       $('#' + selectedTab).fadeIn(775);
@@ -70,25 +69,23 @@ articleView.handleMainNav = function() {
   $('.main-nav .tab:first').click();
 };
 
-//TODO: the read-on functionality
 //need e.preventDefault to keep it from jumping to top of page
 articleView.setTeasers = function() {
-  /* Hide any elements after the first 2 (<p> Tags in case)
-  in any article body: */
-  $('.article-body *:nth-of-type(n+2)').hide();
+  //Hides all elements after the first 2 <p> in any article body
+  $('.article-body *:nth-of-type(n+3)').hide();
 
-  /* TODO: Add a delegated event handler to reveal the remaining
-  paragraph.  When a .read-on link is clicked, we can:
-  1. Prevent the default action of a link.
-  2. Reveal everything in that particular article now.
-  3. Hide that read-on link! */
-  // STRETCH GOAL!:  change the 'Read On' link to display 'Show Less'
-
+  $('a.read-on').on('click', function(e) {
+    var findPrev = $(this).prev();
+    e.preventDefault();
+    findPrev.children(':gt(1)').toggle();
+    var textToggle = findPrev.find(':nth-child(3)').attr('style');
+    if (textToggle === 'display: block;') {
+      $(this).html('Show Less &rarr;');
+    }else{
+      $(this).html('Read on &rarr;');
+    }
+  });
 };
-
-//STRETCH - click on it and it reverts to its previous state
-
-
 
 //TODO: invoke all the of the above methods
 articleView.populateFilters();
